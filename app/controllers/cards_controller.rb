@@ -42,6 +42,14 @@ class CardsController < ApplicationController
     redirect_to deck_path(@deck), notice: "Card deleted successfully."
   end
 
+  def schedule
+    @card = Card.find(params[:id])
+    minutes = params[:next_review_minutes].to_i
+    @card.update(next_review_at: Time.current + minutes.minutes)
+
+    render json: { status: "success" }
+  end
+
   private
 
   def card_params

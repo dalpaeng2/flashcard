@@ -4,6 +4,7 @@
     <h1 class="text-2xl font-semibold mb-4"><%= @deck.name %></h1>
     <p class="text-gray-600 mb-4"><%= @deck.description %></p>
     <div class="flex space-x-2 mt-2">
+      <%= link_to "Quiz", quiz_deck_path(@deck), class: "btn" %>
       <%= link_to "Edit", edit_deck_path(@deck), class: "btn" %>
       <%= button_to "Delete", deck_path(@deck), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
     </div>

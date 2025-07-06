@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_06_003143) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_06_014926) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -54,6 +54,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_06_003143) do
     t.integer "deck_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "next_review_at"
     t.index ["deck_id"], name: "index_cards_on_deck_id"
   end
 

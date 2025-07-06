@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :decks do
     resources :cards, only: [ :new, :create, :show, :edit, :update, :destroy ]
+    get "quiz", to: "decks#quiz", as: "quiz", on: :member
+  end
+
+  resources :cards, only: [] do
+    patch :schedule, on: :member
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
