@@ -22,22 +22,67 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-50 min-h-screen">
     <% flash.each do |key, message| %>
-      <div class="flash-message flash-<%= key %> bg-<%= key == 'notice' ? 'green' : 'red' %>-100 border border-<%= key == 'notice' ? 'green' : 'red' %>-400 text-<%= key == 'notice' ? 'green' : 'red' %>-700 px-4 py-3 rounded fixed top-16 left-1/2 transform -translate-x-1/2 z-50 shadow-lg mb-4">
-        <%= message %>
+      <div class="flash-message flash-<%= key %> 
+                  bg-<%= key == 'notice' ? 'emerald' : 'red' %>-50 
+                  border border-<%= key == 'notice' ? 'emerald' : 'red' %>-200 
+                  text-<%= key == 'notice' ? 'emerald' : 'red' %>-800 
+                  px-6 py-4 rounded-lg 
+                  fixed top-24 left-1/2 transform -translate-x-1/2 z-50 
+                  shadow-lg backdrop-blur-sm 
+                  max-w-md text-center animate-fade-in">
+        <div class="flex items-center justify-center">
+          <% if key == 'notice' %>
+            <svg class="w-5 h-5 mr-2 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          <% else %>
+            <svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+            </svg>
+          <% end %>
+          <%= message %>
+        </div>
       </div>
     <% end %>
-    <header class="w-full bg-gray-800 text-white py-4 px-6 fixed top-0 left-0 z-10">
-      <div class="container mx-auto flex items-center justify-between">
-        <h1 class="text-2xl font-bold">
-          <%= link_to (content_for(:title) || "Flashcard"), root_path, class: "hover:underline" %>
-        </h1>
-        <%# Add navigation links here if needed %>
+    
+    <header class="bg-white/95 shadow-sm border-b border-gray-200 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <%= link_to root_path, class: "flex items-center space-x-2 hover:opacity-75 transition-opacity" do %>
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                  </svg>
+                </div>
+                <span class="text-xl font-semibold text-gray-900">FlashCard</span>
+              <% end %>
+            </div>
+          </div>
+          
+          <nav class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <%= link_to "덱 목록", root_path, 
+                  class: "text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors" %>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
-    <main class="container mx-auto mt-28 px-5 flex">
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <%= yield %>
     </main>
+    
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <p class="text-center text-sm text-gray-500">
+          © 2025 FlashCard App. 학습을 더 효과적으로.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

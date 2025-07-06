@@ -1,30 +1,77 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">New Deck</h1>
-  <%= form_with model: @deck, local: true do |form| %>
-    <% if @deck.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
-        <ul>
-          <% @deck.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+<div class="max-w-2xl mx-auto">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">새 덱 만들기</h1>
+    <p class="text-gray-600">플래시카드 덱을 만들어 효과적인 학습을 시작하세요</p>
+  </div>
+
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+    <%= form_with model: @deck, local: true, class: "space-y-6" do |form| %>
+      <% if @deck.errors.any? %>
+        <div class="bg-red-50 border border-red-200 rounded-lg p-4 mx-6 mt-6">
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-red-400 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div>
+              <h3 class="text-sm font-medium text-red-800 mb-2">
+                <%= pluralize(@deck.errors.count, "개의 오류") %>가 발생했습니다:
+              </h3>
+              <ul class="text-sm text-red-700 space-y-1">
+                <% @deck.errors.full_messages.each do |message| %>
+                  <li>• <%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="p-6 space-y-6">
+        <div>
+          <%= form.label :name, "덱 이름", class: "block text-sm font-semibold text-gray-900 mb-2" %>
+          <%= form.text_field :name, 
+              class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors placeholder-gray-400",
+              placeholder: "예: 영어 단어, 수학 공식, 역사 인물..." %>
+        </div>
+
+        <div>
+          <%= form.label :description, "설명 (선택사항)", class: "block text-sm font-semibold text-gray-900 mb-2" %>
+          <%= form.text_area :description, 
+              rows: 4,
+              class: "w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors placeholder-gray-400 resize-none",
+              placeholder: "이 덱에 대한 간단한 설명을 작성해주세요..." %>
+        </div>
+      </div>
+
+      <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row gap-3 sm:justify-end">
+        <%= link_to decks_path, 
+            class: "inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors" do %>
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          취소
+        <% end %>
+        
+        <%= form.submit "덱 만들기", 
+            class: "inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200 transform hover:scale-105 shadow-sm cursor-pointer" %>
       </div>
     <% end %>
+  </div>
 
-    <div class="field">
-      <%= form.label :name, class: "form-label" %>
-      <%= form.text_field :name, class: "form-input" %>
+  <!-- 팁 섹션 -->
+  <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+    <div class="flex items-start">
+      <svg class="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div>
+        <h3 class="text-sm font-semibold text-blue-900 mb-2">효과적인 덱 만들기 팁</h3>
+        <ul class="text-sm text-blue-800 space-y-1">
+          <li>• 명확하고 구체적인 덱 이름을 사용하세요</li>
+          <li>• 관련된 내용끼리 하나의 덱으로 그룹화하세요</li>
+          <li>• 정기적으로 복습하여 장기 기억으로 전환하세요</li>
+        </ul>
+      </div>
     </div>
-
-    <div class="field">
-      <%= form.label :description, class: "form-label" %>
-      <%= form.text_area :description, class: "form-input" %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Create Deck", class: "btn btn-primary hover:cursor-pointer" %>
-      <%= link_to "Cancel", decks_path, class: "btn btn-secondary" %>
-    </div>
-  <% end %>
+  </div>
 </div>
