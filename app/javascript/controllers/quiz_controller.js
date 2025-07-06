@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["cardBack", "showAnswerBtn", "timeButtons"]
+  static targets = ["cardBack", "showAnswerBtn", "timeButtons", "nextButtons"]
+  static values = { deckId: Number }
 
   showAnswer() {
     this.cardBackTarget.classList.remove("hidden")
@@ -40,8 +41,9 @@ export default class extends Controller {
       body: formData
     }).then(response => {
       if (response.ok) {
-        // 다음 카드로 이동하거나 퀴즈 완료 처리
-        window.location.reload()
+        // 시간 선택 버튼들 숨기고 다음 선택 버튼들 보이기
+        this.timeButtonsTarget.classList.add("hidden")
+        this.nextButtonsTarget.classList.remove("hidden")
       } else {
         console.error('Failed to schedule card:', response.status)
         alert('카드 스케줄링에 실패했습니다.')
@@ -56,5 +58,20 @@ export default class extends Controller {
       button.disabled = false
       button.style.opacity = '1'
     })
+  }
+
+  continueQuiz() {
+    // 다음 카드로 이동 (페이지 새로고침)
+    window.location.reload()
+  }
+
+  endQuiz() {
+    // 덱 페이지로 이동
+    if (this.deckIdValue) {
+      window.location.href = `/decks/${this.deckIdValue}`
+    } else {
+      // deck_id를 찾을 수 없는 경우 덱 목록으로 이동
+      window.location.href = '/decks'
+    }
   }
 }
