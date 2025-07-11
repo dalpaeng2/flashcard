@@ -14,6 +14,28 @@
             </svg>
             <span class="font-medium"><%= pluralize(@deck.cards.count, '카드') %></span>
           </div>
+          
+          <!-- 복습 상태 정보 -->
+          <% if @deck.cards.any? %>
+            <div class="mt-4 flex flex-wrap gap-3 text-sm">
+              <% if @deck.new_cards_count > 0 %>
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-medium">
+                  새로운 <%= @deck.new_cards_count %>장
+                </span>
+              <% end %>
+              <% if @deck.overdue_cards_count > 0 %>
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-red-50 text-red-700 font-medium">
+                  복습 <%= @deck.overdue_cards_count %>장
+                </span>
+              <% end %>
+              <% learned_cards = @deck.cards.count - @deck.cards_due_for_review_count %>
+              <% if learned_cards > 0 %>
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 font-medium">
+                  학습완료 <%= learned_cards %>장
+                </span>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -21,11 +43,11 @@
     <div class="px-6 py-4 bg-gray-50 border-t border-gray-200">
       <div class="flex flex-wrap gap-3">
         <%= link_to quiz_deck_path(@deck), 
-            class: "inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm" do %>
+            class: "inline-flex items-center px-4 py-2 #{@deck.cards_due_for_review_count > 0 ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-gray-400 cursor-not-allowed'} text-white text-sm font-medium rounded-lg transition-colors shadow-sm" do %>
           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
-          퀴즈 시작
+          <%= @deck.cards_due_for_review_count > 0 ? "퀴즈 시작 (#{@deck.cards_due_for_review_count})" : "퀴즈 시작" %>
         <% end %>
         
         <%= link_to edit_deck_path(@deck), 
