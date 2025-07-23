@@ -129,3 +129,181 @@ img[loading='lazy'].loaded {
     color: black !important;
   }
 }
+
+/* Typography 플러그인 스타일 우선순위 보장 */
+
+.prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.625em !important;
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.625em !important;
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.prose li {
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important;
+  padding-left: 0.375em !important;
+}
+
+.prose li > * {
+  margin-top: 0.75em !important;
+  margin-bottom: 0.75em !important;
+}
+
+.prose li > *:first-child {
+  margin-top: 0 !important;
+}
+
+.prose li > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.prose blockquote {
+  font-style: italic !important;
+  border-left: 4px solid #e5e7eb !important;
+  padding-left: 1em !important;
+  margin: 1.6em 0 !important;
+  color: #6b7280 !important;
+  font-weight: 500 !important;
+  quotes: '\201C''\201D''\2018''\2019' !important;
+}
+
+.prose blockquote p:first-of-type::before {
+  content: open-quote !important;
+}
+
+.prose blockquote p:last-of-type::after {
+  content: close-quote !important;
+}
+
+.prose code {
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.875em !important;
+  font-weight: 600 !important;
+}
+
+.prose code::before,
+.prose code::after {
+  content: '' !important;
+}
+
+.prose pre {
+  background-color: #f9fafb !important;
+  color: #374151 !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow-x: auto !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+.prose pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-weight: 400 !important;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: #111827 !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+}
+
+.prose h2 {
+  margin-top: 2em !important;
+  margin-bottom: 1em !important;
+  font-size: 1.5em !important;
+}
+
+.prose h3 {
+  margin-top: 1.6em !important;
+  margin-bottom: 0.6em !important;
+  font-size: 1.25em !important;
+}
+
+.prose h4 {
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+  font-size: 1.125em !important;
+}
+
+.prose p {
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.prose a {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.prose a:hover {
+  color: #1d4ed8 !important;
+}
+
+.prose strong {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+.prose em {
+  color: #374151 !important;
+  font-style: italic !important;
+}
+
+/* prose 색상 테마별 스타일 */
+.prose-blue blockquote {
+  border-left-color: #3b82f6 !important;
+  color: #1e40af !important;
+}
+
+.prose-blue a {
+  color: #2563eb !important;
+}
+
+.prose-blue a:hover {
+  color: #1d4ed8 !important;
+}
+
+.prose-green blockquote {
+  border-left-color: #10b981 !important;
+  color: #047857 !important;
+}
+
+.prose-green a {
+  color: #059669 !important;
+}
+
+.prose-green a:hover {
+  color: #047857 !important;
+}
+
+.prose-red blockquote {
+  border-left-color: #ef4444 !important;
+  color: #dc2626 !important;
+}
+
+.prose-red a {
+  color: #dc2626 !important;
+}
+
+.prose-red a:hover {
+  color: #b91c1c !important;
+}
