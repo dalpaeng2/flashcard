@@ -11,73 +11,6 @@ trix-editor {
   outline: none;
 }
 
-/* Trix 에디터 내부 리스트 스타일 */
-trix-editor ul,
-trix-editor ol {
-  padding-left: 1.5em;
-}
-trix-editor li {
-  list-style-type: disc;
-  list-style-position: inside;
-  margin-left: 0;
-}
-trix-editor ol li {
-  list-style-type: decimal;
-  list-style-position: inside;
-}
-trix-editor ul li {
-  list-style-type: disc;
-  list-style-position: inside;
-}
-trix-editor ul ul li {
-  list-style-type: circle;
-  list-style-position: inside;
-}
-trix-editor ul ul ul li {
-  list-style-type: square;
-  list-style-position: inside;
-}
-
-/* Trix 에디터 내부 blockquote 스타일 */
-trix-editor blockquote {
-  border: 0 solid #ccc;
-  border-left-width: 0.3em;
-  margin-left: 0.3em;
-  padding-left: 0.6em;
-  font-style: italic;
-  color: #666;
-}
-trix-editor [dir='rtl'] blockquote,
-trix-editor blockquote[dir='rtl'] {
-  border-width: 0;
-  border-right-width: 0.3em;
-  margin-right: 0.3em;
-  padding-right: 0.6em;
-}
-
-/* Trix 에디터 내부 heading 스타일 */
-trix-editor h1 {
-  font-size: 1.2em;
-  line-height: 1.2;
-  font-weight: bold;
-  margin: 0.5em 0;
-}
-
-/* Trix 에디터 내부 pre 스타일 */
-trix-editor pre {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-  font-family: monospace;
-  font-size: 0.9em;
-  padding: 0.5em;
-  white-space: pre;
-  background-color: #eee;
-  overflow-x: auto;
-  border-radius: 3px;
-  margin: 0.5em 0;
-}
-
 trix-toolbar * {
   box-sizing: border-box;
 }
@@ -495,16 +428,12 @@ trix-editor .attachment__metadata .attachment__size {
 .trix-content h1 {
   font-size: 1.2em;
   line-height: 1.2;
-  font-weight: bold;
-  margin: 0.5em 0;
 }
 .trix-content blockquote {
   border: 0 solid #ccc;
   border-left-width: 0.3em;
   margin-left: 0.3em;
   padding-left: 0.6em;
-  font-style: italic;
-  color: #666;
 }
 .trix-content [dir='rtl'] blockquote,
 .trix-content blockquote[dir='rtl'] {
@@ -513,35 +442,11 @@ trix-editor .attachment__metadata .attachment__size {
   margin-right: 0.3em;
   padding-right: 0.6em;
 }
-.trix-content ul,
-.trix-content ol {
-  padding-left: 1.5em;
-}
 .trix-content li {
-  margin-left: 0;
-  list-style-type: disc;
-  list-style-position: inside;
+  margin-left: 1em;
 }
 .trix-content [dir='rtl'] li {
-  margin-right: 0;
-  list-style-type: disc;
-  list-style-position: inside;
-}
-.trix-content ol li {
-  list-style-type: decimal;
-  list-style-position: inside;
-}
-.trix-content ul li {
-  list-style-type: disc;
-  list-style-position: inside;
-}
-.trix-content ul ul li {
-  list-style-type: circle;
-  list-style-position: inside;
-}
-.trix-content ul ul ul li {
-  list-style-type: square;
-  list-style-position: inside;
+  margin-right: 1em;
 }
 .trix-content pre {
   display: inline-block;
@@ -553,8 +458,6 @@ trix-editor .attachment__metadata .attachment__size {
   white-space: pre;
   background-color: #eee;
   overflow-x: auto;
-  border-radius: 3px;
-  margin: 0.5em 0;
 }
 .trix-content img {
   max-width: 100%;
